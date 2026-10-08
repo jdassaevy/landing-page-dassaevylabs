@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Check, Code2, PanelsTopLeft, Workflow } from "lucide-react";
 import { Header } from "./header";
@@ -84,5 +85,5 @@ export function Home() {
     <section className="section shell"><Reveal><p className="eyebrow">FAQ</p><h2>Dúvidas frequentes.</h2></Reveal><div className="faq">{faqs.map(([q, a], i) => <Reveal key={q} delay={i * .04}><details><summary>{q}<span>+</span></summary><p>{a}</p></details></Reveal>)}</div></section>
 
     <section id="contato" className="section shell contact-grid"><Reveal direction="left"><p className="eyebrow">VAMOS CONVERSAR</p><h2>Tem uma ideia? Vamos transformar em algo real.</h2><p className="section-lead">Conte o que sua empresa precisa e vamos encontrar a melhor forma de transformar isso em uma solução digital.</p><a className="text-link" href={whatsappUrl("Olá, Julio! Quero conversar sobre um projeto para minha empresa.")} target="_blank">Prefere WhatsApp? Fale comigo agora →</a></Reveal><Reveal direction="right" delay={.08}><QuoteForm /></Reveal></section>
-  </main><footer className="footer"><div className="shell footer-grid"><div><div className="brand"><span className="brand-mark">D</span><span>Dassaevy Labs</span></div><p>Sites • Sistemas • Automações</p></div><div><p>{site.founder}<br />Full Stack Developer & Founder</p><p><a href={site.linkedin}>LinkedIn</a> · <a href={site.github}>GitHub</a> · <a href={`mailto:${site.email}`}>E-mail</a></p></div><div><p>© 2026 Dassaevy Labs.<br />Todos os direitos reservados.</p></div></div></footer></>;
+  </main><footer className="footer"><div className="shell footer-grid"><div><div className="brand footer-brand"><span className="brand-logo-shell" aria-hidden="true"><Image src="/brand/logo-blue.png" alt="" width={30} height={30} className="brand-logo" /></span><span className="brand-name">Dassaevy Labs</span></div><p>Sites • Sistemas • Automações</p></div><div><p>{site.founder}<br />Full Stack Developer & Founder</p><p><a href={site.linkedin}>LinkedIn</a> · <a href={site.github}>GitHub</a> · <a href={`mailto:${site.email}`}>E-mail</a></p></div><div><p>© 2026 Dassaevy Labs.<br />Todos os direitos reservados.</p></div></div></footer></>;
 }
