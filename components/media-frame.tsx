@@ -25,8 +25,7 @@ export function MediaFrame({ src, alt, width, height, priority = false, classNam
         height={height}
         priority={priority}
         loading={priority ? "eager" : "lazy"}
-        sizes="(max-width: 768px) 100vw, 75vw"
-        unoptimized
+        sizes="(max-width: 768px) 100vw, (max-width: 1100px) 80vw, 75vw"
         onLoad={(event) => {
           if (hasLoadedImage(event.currentTarget)) setStatus("ready");
         }}

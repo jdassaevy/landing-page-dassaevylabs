@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useState } from "react";
+import { trackConversion } from "@/lib/analytics";
 import { homeSectionLinks } from "@/lib/navigation";
 import { whatsappUrl } from "@/lib/site";
 
@@ -29,6 +30,8 @@ export function Header() {
             className="button small"
             href={whatsappUrl("Olá, Julio! Vim pelo site da Dassaevy Labs e gostaria de conversar sobre um projeto.")}
             target="_blank"
+            rel="noreferrer"
+            onClick={() => trackConversion("whatsapp_click", "header")}
           >
             Vamos conversar ↗
           </a>
@@ -59,7 +62,10 @@ export function Header() {
               href={whatsappUrl("Olá, Julio! Vim pelo site da Dassaevy Labs e quero conversar sobre um projeto.")}
               target="_blank"
               rel="noreferrer"
-              onClick={() => setOpen(false)}
+              onClick={() => {
+                trackConversion("whatsapp_click", "mobile_menu");
+                setOpen(false);
+              }}
             >
               Falar sobre meu projeto ↗
             </a>

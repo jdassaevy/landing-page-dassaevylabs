@@ -1,6 +1,7 @@
 export const site = {
   name: "Dassaevy Labs",
   url: "https://dassaevylabs.com.br",
+  studentsUrl: "https://alunos.dassaevylabs.com.br",
   founder: "Julio Dassaevy",
   role: "Founder & Full Stack Developer",
   email: "dassaevylabs@gmail.com",

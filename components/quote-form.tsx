@@ -2,6 +2,7 @@
 
 import { LoaderCircle } from "lucide-react";
 import { useRef, useState } from "react";
+import { trackConversion } from "@/lib/analytics";
 import { whatsappUrl } from "@/lib/site";
 
 const options = ["Landing Page", "Site Institucional", "Site Premium", "Sistema / Plataforma", "Automação / Integração", "Ainda não sei"];
@@ -25,8 +26,10 @@ export function QuoteForm() {
 
       if (!response.ok) throw new Error();
       formRef.current?.reset();
+      trackConversion("quote_submit_success", "quote_form");
       setStatus("success");
     } catch {
+      trackConversion("quote_submit_error", "quote_form");
       setStatus("error");
     }
   }
@@ -74,7 +77,7 @@ export function QuoteForm() {
       </button>
       <div className={`form-feedback ${status}`} role="status" aria-live="polite">
         {status === "success" && "Recebi sua solicitação. Vou entrar em contato para entender melhor o projeto."}
-        {status === "error" && <span>Não consegui enviar agora. <a className="form-fallback" href={fallbackUrl} target="_blank" rel="noreferrer">Falar pelo WhatsApp →</a></span>}
+        {status === "error" && <span>Não consegui enviar agora. <a className="form-fallback" href={fallbackUrl} target="_blank" rel="noreferrer" onClick={() => trackConversion("whatsapp_click", "quote_error")}>Falar pelo WhatsApp →</a></span>}
       </div>
     </form>
   );
