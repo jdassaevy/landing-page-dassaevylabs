@@ -1,36 +1,27 @@
 # Dassaevy Labs — Landing Page
 
-Landing comercial premium da Dassaevy Labs, construída com Next.js, TypeScript, Tailwind CSS e Motion for React.
+Landing comercial premium da Dassaevy Labs em Next.js + TypeScript + Motion.
 
-## Desenvolvimento
+## Rodando localmente
 
 ```bash
 npm install
 npm run dev
 ```
 
-## Variáveis de ambiente
-
-Copie `.env.example` para `.env.local` e preencha os valores reais. Segredos do Resend nunca devem usar prefixo `NEXT_PUBLIC_`.
-
 ## Qualidade
 
 ```bash
 npm run test:run
-npm run test:e2e
-npm run lint
 npm run typecheck
+npm run lint
 npm run build
 ```
 
-Antes de produção:
+## Produção
 
-```bash
-npm run verify:production
-```
+Defina `RESEND_API_KEY`, `RESEND_FROM_EMAIL` e `QUOTE_RECIPIENT_EMAIL` na Vercel e rode `npm run verify:production` antes do deploy final.
 
-O gate exige contato/domínio reais, logo, foto profissional e imagem real do case publicado. Cases sem material real devem permanecer como `draft`.
+## Motion Principles
 
-## Motion
-
-O projeto segue `kylezantos/design-motion-principles`: Jakub Krehel como lente principal, Jhey Tompkins como secundária e Emil Kowalski seletivamente em navegação/formulários. Todo motion respeita `prefers-reduced-motion`.
+O projeto segue a direção aprovada baseada em `kylezantos/design-motion-principles`: Jakub como lente principal, Jhey nos momentos expressivos e Emil em componentes utilitários. Reduced motion, skeletons proporcionais, lazy loading e feedback de progresso são requisitos do projeto.
