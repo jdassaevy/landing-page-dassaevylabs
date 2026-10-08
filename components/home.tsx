@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight, Check, Code2, PanelsTopLeft, Workflow } from "lucide-react";
 import { Header } from "./header";
 import { MediaFrame } from "./media-frame";
-import { Pressable, Reveal, RevealListItem } from "./motion";
+import { HeroSequence, HeroStep, Parallax, Pressable, ProcessTimeline, Reveal, RevealListItem, ScrollProgress } from "./motion";
 import { QuoteForm } from "./quote-form";
 import { publishedCases } from "@/content/cases";
 import { site, whatsappUrl } from "@/lib/site";
@@ -40,21 +40,21 @@ const faqs = [
 export function Home() {
   const mainCase = publishedCases[0];
 
-  return <><Header /><main>
+  return <><ScrollProgress /><Header /><main>
     <section className="hero">
       <div className="hero-glow" />
       <div className="hero-glow hero-glow-secondary" />
       <div className="shell hero-grid">
-        <Reveal className="hero-copy" direction="left" distance={28}>
-          <p className="eyebrow">{site.founder} · {site.role}</p>
-          <h1>Tecnologia que transforma ideias em <span>soluções reais.</span></h1>
-          <p className="lead">Sites, sistemas e automações desenvolvidos sob medida para empresas que querem crescer, vender mais e trabalhar de forma mais inteligente.</p>
-          <div className="actions">
+        <HeroSequence className="hero-copy">
+          <HeroStep><p className="eyebrow">{site.founder} · {site.role}</p></HeroStep>
+          <HeroStep><h1>Tecnologia que transforma ideias em <span>soluções reais.</span></h1></HeroStep>
+          <HeroStep><p className="lead">Sites, sistemas e automações desenvolvidos sob medida para empresas que querem crescer, vender mais e trabalhar de forma mais inteligente.</p></HeroStep>
+          <HeroStep><div className="actions">
             <a className="button" href={whatsappUrl("Olá, Julio! Vim pelo site da Dassaevy Labs e gostaria de conversar sobre um projeto.")} target="_blank">Falar comigo no WhatsApp <ArrowRight size={18} /></a>
             <a className="button ghost" href="#contato">Solicitar orçamento</a>
-          </div>
-          <p className="hero-points">Sites modernos · Sistemas sob medida · Automações inteligentes</p>
-        </Reveal>
+          </div></HeroStep>
+          <HeroStep><p className="hero-points">Sites modernos · Sistemas sob medida · Automações inteligentes</p></HeroStep>
+        </HeroSequence>
         <Reveal className="hero-photo" delay={0.12} direction="right" distance={34}>
           <div className="photo-orbit" aria-hidden="true" />
           <MediaFrame src="/images/julio-dassaevy.webp" alt="Julio Dassaevy" width={500} height={889} priority />
@@ -72,7 +72,7 @@ export function Home() {
 
     <section id="servicos" className="section shell"><div className="service-list">{services.map((s, i) => <Reveal key={s.n} delay={i * .08}><article className="service-card"><span className="service-number">{s.n}</span><s.icon /><h3>{s.title}</h3><p>{s.text}</p><small>{s.tags}</small></article></Reveal>)}</div></section>
 
-    <section id="projetos" className="section shell"><Reveal><p className="eyebrow">PROJETOS</p><h2>Soluções que já estão funcionando no mundo real.</h2></Reveal><Pressable className="case-card" reveal><Link href={`/projetos/${mainCase.slug}`}><div><p className="eyebrow">{mainCase.eyebrow}</p><h3>{mainCase.title}</h3><p>{mainCase.summary}</p><span>Ver case completo →</span></div>{mainCase.image && <MediaFrame {...mainCase.image} />}</Link></Pressable></section>
+    <section id="projetos" className="section shell"><Reveal><p className="eyebrow">PROJETOS</p><h2>Soluções que já estão funcionando no mundo real.</h2></Reveal><Parallax className="case-parallax" distance={18}><Pressable className="case-card" reveal><Link href={`/projetos/${mainCase.slug}`}><div><p className="eyebrow">{mainCase.eyebrow}</p><h3>{mainCase.title}</h3><p>{mainCase.summary}</p><span>Ver case completo →</span></div>{mainCase.image && <MediaFrame {...mainCase.image} />}</Link></Pressable></Parallax></section>
 
     <section id="precos" className="section shell"><Reveal><p className="eyebrow">INVESTIMENTO</p><h2>Escolha o ponto de partida ideal.</h2><p className="section-lead">Valores base para projetos comuns. Sistemas, automações e escopos especiais recebem orçamento personalizado.</p></Reveal><div className="pricing-grid">{plans.map((p, i) => <Pressable key={p.name} className={`price-card ${p.featured ? "featured" : ""}`} reveal delay={i * .07}><p className="eyebrow">{p.featured ? "MAIS COMPLETO" : "PROJETO"}</p><h3>{p.name}</h3><p>{p.desc}</p><div className="price"><small>A partir de</small><strong>{p.price}</strong></div><ul>{p.features.map(f => <li key={f}><Check size={16} />{f}</li>)}</ul><a className="button ghost full" href={whatsappUrl(`Olá, Julio! Vi o pacote ${p.name} no site da Dassaevy Labs e gostaria de conversar sobre um projeto.`)} target="_blank">Quero este projeto</a></Pressable>)}</div><Reveal><div className="custom-card"><div><p className="eyebrow">PROJETO PERSONALIZADO</p><h3>Precisa de algo além de um site?</h3><p>Sistemas web, dashboards, plataformas SaaS, áreas administrativas, integrações e automações são desenvolvidos sob medida.</p></div><a className="button" href="#contato">Solicitar orçamento personalizado</a></div></Reveal></section>
 
@@ -80,7 +80,7 @@ export function Home() {
 
     <section id="sobre" className="section shell about-grid"><Reveal direction="left"><MediaFrame src="/images/julio-dassaevy.webp" alt="Julio Dassaevy, fundador da Dassaevy Labs" width={500} height={889} /></Reveal><Reveal direction="right"><p className="eyebrow">SOBRE</p><h2>Tecnologia com visão de negócio.</h2><p className="section-lead">Sou Julio Dassaevy, desenvolvedor Full Stack e fundador da Dassaevy Labs. Trabalho criando soluções digitais que unem desenvolvimento, experiência do usuário e estratégia.</p><p>Meu objetivo não é apenas entregar código. É entender o problema, transformar a necessidade em uma solução clara e construir algo que faça sentido para o negócio.</p></Reveal></section>
 
-    <section className="section shell"><Reveal><p className="eyebrow">PROCESSO</p><h2>Você acompanha o projeto do início ao fim.</h2></Reveal><ol className="process">{process.map((item, i) => <RevealListItem key={item} delay={i * .06}><span>{String(i + 1).padStart(2, "0")}</span><div><h3>{item}</h3><p>{processText[i]}</p></div></RevealListItem>)}</ol></section>
+    <section className="section shell"><Reveal><p className="eyebrow">PROCESSO</p><h2>Você acompanha o projeto do início ao fim.</h2></Reveal><ProcessTimeline>{process.map((item, i) => <RevealListItem key={item} delay={i * .06}><span>{String(i + 1).padStart(2, "0")}</span><div><h3>{item}</h3><p>{processText[i]}</p></div></RevealListItem>)}</ProcessTimeline></section>
 
     <section className="section shell"><Reveal><p className="eyebrow">FAQ</p><h2>Dúvidas frequentes.</h2></Reveal><div className="faq">{faqs.map(([q, a], i) => <Reveal key={q} delay={i * .04}><details><summary>{q}<span>+</span></summary><p>{a}</p></details></Reveal>)}</div></section>
 
