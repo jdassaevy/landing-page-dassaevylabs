@@ -5,12 +5,12 @@ import { describe, expect, it } from "vitest";
 const read = (path: string) => readFileSync(join(process.cwd(), path), "utf8");
 
 describe("SEO, analytics and production domain contracts", () => {
-  it("mounts Vercel Analytics from the official Next.js integration", () => {
+  it("mounts Vercel Analytics from the compatible React integration", () => {
     const pkg = JSON.parse(read("package.json"));
     const layout = read("app/layout.tsx");
 
-    expect(pkg.dependencies["@vercel/analytics"]).toBeTruthy();
-    expect(layout).toContain('@vercel/analytics/next');
+    expect(pkg.dependencies["@vercel/analytics"]).toBe("1.2.2");
+    expect(layout).toContain('@vercel/analytics/react');
     expect(layout).toContain("<Analytics");
   });
 
