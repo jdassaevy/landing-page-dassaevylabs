@@ -30,9 +30,9 @@ jobs:
           cp tmp/blob-03a.bin public/images/julio-dassaevy.webp
           sed -i 's#@/content/cases#../content/cases#' tests/core.test.ts
           sed -i 's#@/lib/site#../lib/site#' tests/core.test.ts
-          rm -rf .bootstrap tmp
+          rm -rf tmp
           rm -f tmp-marker.txt sync-test.txt public/brand/logo.png.base64-placeholder
-          rm -f .github/workflows/bootstrap.yml
+          rm -f .github/workflows/ci.yml testfile tsconfig.tsbuildinfo
 
       - uses: actions/setup-node@v4
         with:
