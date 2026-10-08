@@ -1,3 +1,5 @@
+import { statSync } from "node:fs";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { getPublishedCase, publishedCases } from "../content/cases";
 import { hasLoadedImage, mediaImageIsVisible } from "../lib/media";
@@ -26,5 +28,11 @@ describe("media loading", () => {
     expect(mediaImageIsVisible("loading")).toBe(true);
     expect(mediaImageIsVisible("ready")).toBe(true);
     expect(mediaImageIsVisible("error")).toBe(false);
+  });
+  it("ships full landing media instead of tiny placeholder files", () => {
+    const photo = statSync(join(process.cwd(), "public/images/julio-dassaevy.webp"));
+    const dashboard = statSync(join(process.cwd(), "public/cases/students-registration.webp"));
+    expect(photo.size).toBeGreaterThan(50_000);
+    expect(dashboard.size).toBeGreaterThan(20_000);
   });
 });
