@@ -54,6 +54,15 @@ export function Header() {
             {homeSectionLinks.map(([label, href]) => (
               <Link href={href} key={href} onClick={() => setOpen(false)}>{label}</Link>
             ))}
+            <a
+              className="mobile-panel-cta"
+              href={whatsappUrl("Olá, Julio! Vim pelo site da Dassaevy Labs e quero conversar sobre um projeto.")}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => setOpen(false)}
+            >
+              Falar sobre meu projeto ↗
+            </a>
           </motion.nav>
         )}
       </AnimatePresence>
