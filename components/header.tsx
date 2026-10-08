@@ -16,8 +16,10 @@ export function Header() {
     <header className="header">
       <div className="shell nav">
         <Link className="brand" href="/" aria-label="Dassaevy Labs - início">
-          <Image src="/brand/logo-blue.png" alt="" width={38} height={38} className="brand-logo" priority />
-          <span>Dassaevy Labs</span>
+          <span className="brand-logo-shell" aria-hidden="true">
+            <Image src="/brand/logo-blue.png" alt="" width={30} height={30} className="brand-logo" priority />
+          </span>
+          <span className="brand-name">Dassaevy Labs</span>
         </Link>
         <nav className="desktop-nav">
           {homeSectionLinks.map(([label, href]) => (
