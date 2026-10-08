@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { getPublishedCase, publishedCases } from "../content/cases";
-import { hasLoadedImage } from "../lib/media";
+import { hasLoadedImage, mediaImageIsVisible } from "../lib/media";
 import { homeSectionLinks } from "../lib/navigation";
 import { whatsappUrl } from "../lib/site";
 
@@ -21,5 +21,10 @@ describe("media loading", () => {
   it("keeps broken or unfinished images out of the ready state", () => {
     expect(hasLoadedImage({ complete: false, naturalWidth: 500 })).toBe(false);
     expect(hasLoadedImage({ complete: true, naturalWidth: 0 })).toBe(false);
+  });
+  it("never hides a valid image while it is still loading", () => {
+    expect(mediaImageIsVisible("loading")).toBe(true);
+    expect(mediaImageIsVisible("ready")).toBe(true);
+    expect(mediaImageIsVisible("error")).toBe(false);
   });
 });
