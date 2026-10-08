@@ -2,6 +2,7 @@
 
 import { MessageCircle } from "lucide-react";
 import { useEffect, useState } from "react";
+import { trackConversion } from "@/lib/analytics";
 import { whatsappUrl } from "@/lib/site";
 
 export function MobileCta() {
@@ -29,6 +30,7 @@ export function MobileCta() {
         href={whatsappUrl("Olá, Julio! Vim pelo site da Dassaevy Labs e quero conversar sobre um projeto.")}
         target="_blank"
         rel="noreferrer"
+        onClick={() => trackConversion("whatsapp_click", "mobile_sticky")}
       >
         <MessageCircle size={18} />
         <span>Falar sobre meu projeto</span>
