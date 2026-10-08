@@ -15,8 +15,8 @@ export function Header() {
   return (
     <header className="header">
       <div className="shell nav">
-        <Link className="brand" href="/">
-          <Image src="/brand/logo.png" alt="" width={32} height={32} className="brand-logo" />
+        <Link className="brand" href="/" aria-label="Dassaevy Labs - início">
+          <Image src="/brand/logo-blue.png" alt="" width={38} height={38} className="brand-logo" priority />
           <span>Dassaevy Labs</span>
         </Link>
         <nav className="desktop-nav">
@@ -44,9 +44,10 @@ export function Header() {
         {open && (
           <motion.nav
             className="mobile-panel"
-            initial={reduce ? false : { opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={reduce ? undefined : { opacity: 0, y: -5 }}
+            initial={reduce ? false : { opacity: 0, y: -8, scale: .985 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={reduce ? undefined : { opacity: 0, y: -5, scale: .99 }}
+            transition={{ duration: .22, ease: [0.22, 1, 0.36, 1] }}
           >
             {homeSectionLinks.map(([label, href]) => (
               <Link href={href} key={href} onClick={() => setOpen(false)}>{label}</Link>
