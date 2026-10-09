@@ -41,6 +41,7 @@ export function Header() {
           onClick={() => setOpen((value) => !value)}
           aria-label={open ? "Fechar menu" : "Abrir menu"}
           aria-expanded={open}
+          aria-controls="mobile-navigation"
         >
           {open ? <X /> : <Menu />}
         </button>
@@ -48,6 +49,7 @@ export function Header() {
       <AnimatePresence>
         {open && (
           <motion.nav
+            id="mobile-navigation"
             className="mobile-panel"
             initial={reduce ? false : { opacity: 0, y: -8, scale: .985 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}

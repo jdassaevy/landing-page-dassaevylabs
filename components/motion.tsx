@@ -79,20 +79,20 @@ export function Parallax({ children, className = "", distance = 24 }: PropsWithC
 }
 
 export function ProcessTimeline({ children }: PropsWithChildren) {
-  const ref = useRef<HTMLOListElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 78%", "end 38%"] });
   const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 28, mass: 0.22 });
 
   return (
-    <ol ref={ref} className="process">
+    <div ref={ref} className="process-timeline">
       <motion.span
         className="process-progress"
         aria-hidden="true"
         style={reduce ? { scaleY: 1 } : { scaleY: progress }}
       />
-      {children}
-    </ol>
+      <ol className="process">{children}</ol>
+    </div>
   );
 }
 
